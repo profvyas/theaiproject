@@ -44,43 +44,27 @@ SEAT
 COUNTRY OF ORIGIN
 - Italy
 """
-prompt = f"""
-Your task is to help a marketing team create a 
-description for a retail website of a product based 
-on a technical fact sheet.
 
-Write a product description based on the information 
-provided in the technical specifications delimited by 
-triple backticks.
-
-The description is intended for furniture retailers, 
-so should be technical in nature and focus on the 
-materials the product is constructed from.
-
-At the end of the description, include every 7-character 
-Product ID in the technical specification.
-
-After the description, include a table that gives the 
-product's dimensions. The table should have two columns.
-In the first column include the name of the dimension. 
-In the second column include the measurements in inches only.
-
-Give the table the title 'Product Dimensions'.
-
-Format everything as HTML that can be used in a website. 
-Place the description in a <div> element.
-
-Technical specifications: ```{fact_sheet_chair}```
+prod_review = """
+Got this panda plush toy for my daughter's birthday, \
+who loves it and takes it everywhere. It's soft and \ 
+super cute, and its face has a friendly look. It's \ 
+a bit small for what I paid though. I think there \ 
+might be other options that are bigger for the \ 
+same price. It arrived a day earlier than expected, \ 
+so I got to play with it myself before I gave it \ 
+to her.
 """
 
-response = get_completion(prompt)
-#print(response)
-Func = open("./response.html","w")
-   
-# Adding input data to the HTML file
-Func.write(response)
-              
-# Saving the data into the HTML file
-Func.close()
-webbrowser.open_new_tab("./response.html")
+prompt = f"""
+Your task is to generate a short summary of a product \
+review to give feeback to the customer experience department. 
+
+Summarize the review below, delimited by triple 
+backticks, in at most 300 words. 
+
+Review: ```{prod_review}```
+"""
+
+get_completion_streamed(prompt)
 
